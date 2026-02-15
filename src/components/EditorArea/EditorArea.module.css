@@ -1,0 +1,37 @@
+.editorArea {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--color-bg);
+}
+
+.historySection {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+.historyList {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 0.25rem;
+}
+
+.inputSection {
+  flex-shrink: 0;
+  padding: 1rem;
+  border-top: 2px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.inputLine {
+  min-height: 60px;
+  padding: 1rem 1.5rem;
+  font-size: 1.5rem;
+  background: var(--color-input-bg);
+  border-radius: 8px;
+  border: 2px solid var(--color-border);
+  display: flex;
+  align-items: center;
+}

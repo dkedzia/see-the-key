@@ -1,0 +1,37 @@
+.historyItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  margin: 0.25rem 0;
+  background: var(--color-surface);
+  border-radius: 8px;
+  border: 2px solid transparent;
+  min-height: 60px;
+}
+
+.historyItem.highlighted {
+  border-color: var(--color-accent);
+  background: var(--color-surface-hover);
+}
+
+.text {
+  flex: 1;
+  font-size: 1.25rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.actionBtn {
+  min-width: 80px;
+  min-height: 44px;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+}

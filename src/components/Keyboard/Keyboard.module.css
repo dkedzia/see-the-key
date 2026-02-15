@@ -1,0 +1,58 @@
+.keyboard {
+  flex-shrink: 0;
+  padding: 1rem;
+  background: var(--color-surface);
+  border-top: 2px solid var(--color-border);
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.key {
+  min-width: 60px;
+  min-height: 60px;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 8px;
+  border: 2px solid var(--color-border);
+  background: var(--color-key-bg);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: background 0.15s, transform 0.05s;
+}
+
+.key:hover {
+  background: var(--color-key-hover);
+}
+
+.key:active {
+  transform: scale(0.97);
+}
+
+.key:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.spaceKey {
+  flex: 1;
+  min-width: 200px;
+}
+
+.specialKey {
+  min-width: 120px;
+  min-height: 60px;
+  font-size: 1rem;
+}
