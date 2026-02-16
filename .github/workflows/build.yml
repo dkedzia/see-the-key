@@ -3,8 +3,13 @@ name: Build
 on:
   push:
     branches: [main, master]
+    tags:
+      - '*'
   pull_request:
     branches: [main, master]
+
+permissions:
+  contents: write
 
 jobs:
   build-windows:
@@ -29,7 +34,19 @@ jobs:
         run: npm run tauri build
 
       - name: Upload artifact
+        if: github.ref_type != 'tag'
         uses: actions/upload-artifact@v4
         with:
           name: see-the-key-windows
           path: src-tauri/target/release/app.exe
+
+      - name: Prepare release asset
+        if: github.ref_type == 'tag'
+        run: Copy-Item "src-tauri/target/release/app.exe" "See-the-Key-${{ github.ref_name }}.exe"
+
+      - name: Upload to Release
+        if: github.ref_type == 'tag'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: See-the-Key-${{ github.ref_name }}.exe
+          generate_release_notes: true
