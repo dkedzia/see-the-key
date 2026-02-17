@@ -15,24 +15,46 @@
 }
 
 .langSwitcher {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  position: relative;
 }
 
-.langLabel {
-  font-size: 0.9rem;
-  opacity: 0.9;
-}
-
-.langBtn {
-  min-width: 80px;
+.langTrigger {
+  min-width: 100px;
   min-height: 44px;
   padding: 0.5rem 1rem;
   font-size: 0.95rem;
 }
 
-.langBtn.active {
+.langPopup {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 0.25rem;
+  padding: 0.25rem;
+  background: var(--color-surface);
+  border: 2px solid var(--color-border);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  min-width: 120px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+}
+
+.langOption {
+  min-width: 100px;
+  min-height: 40px;
+  padding: 0.5rem 1rem;
+  font-size: 0.95rem;
+  text-align: left;
+  border-radius: 4px;
+}
+
+.langOption:hover {
+  background: var(--color-surface-hover);
+}
+
+.langOption.active {
   background: var(--color-accent);
   border-color: var(--color-accent);
   color: white;

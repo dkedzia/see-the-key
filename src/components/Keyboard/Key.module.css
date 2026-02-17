@@ -1,14 +1,17 @@
 .key {
-  min-width: 60px;
-  min-height: 60px;
+  flex: 0 0 auto;
+  height: 100%;
+  min-width: 0;
+  aspect-ratio: 1;
   font-size: 1.25rem;
   font-weight: 500;
+  text-transform: uppercase;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 0.5rem;
-  border-radius: 8px;
+  border-radius: 0;
   border: 2px solid var(--color-border);
   background: var(--color-key-bg);
   color: var(--color-text);
@@ -29,17 +32,50 @@
   outline-offset: 2px;
 }
 
-.topChar,
-.bottomChar {
-  display: block;
-  line-height: 1;
+.splitKey {
+  flex: 0 0 auto;
+  height: 100%;
+  min-width: 0;
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid var(--color-border);
+  border-radius: 0;
+  overflow: hidden;
 }
 
-.topChar {
+.splitKeyTop,
+.splitKeyBottom {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  background: var(--color-key-bg);
+  color: var(--color-text);
+  cursor: pointer;
+  border: none;
+  border-radius: 0;
+  padding: 0.25rem;
+  transition: background 0.15s;
 }
 
-.bottomChar {
-  font-size: 0.85rem;
-  opacity: 0.9;
+.splitKeyTop {
+  border-bottom: 2px solid var(--color-border);
+}
+
+.splitKeyTop:hover {
+  background: var(--color-key-hover);
+}
+
+.splitKeyBottom:hover {
+  background: var(--color-key-hover);
+}
+
+.splitKeyTop:focus-visible,
+.splitKeyBottom:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: -3px;
 }

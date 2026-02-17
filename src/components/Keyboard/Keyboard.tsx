@@ -26,25 +26,60 @@ export function Keyboard() {
   return (
     <div className={styles.keyboard}>
       <div className={styles.rows}>
-        <div className={styles.row}>
-          {ROW1.map((char) => (
-            <Key key={char} char={char} isPolishLayout={isPolish} />
-          ))}
-        </div>
-        <div className={styles.row}>
-          {ROW2.map((char) => (
-            <Key key={char} char={char} isPolishLayout={isPolish} />
-          ))}
-        </div>
-        <div className={styles.row}>
-          {ROW3.map((char) => (
-            <Key key={char} char={char} isPolishLayout={isPolish} />
-          ))}
-        </div>
+        {/* Row 1: Numbers + Clear (Backspace position) */}
         <div className={styles.row}>
           {ROW4.map((char) => (
             <Key key={char} char={char} isPolishLayout={false} />
           ))}
+          <button
+            type="button"
+            className={`${styles.key} ${styles.clearKey}`}
+            onClick={handleClearButton}
+          >
+            {t('clear')}
+          </button>
+        </div>
+        {/* Row 2: Restore (Tab) + Q-P */}
+        <div className={styles.row}>
+          <button
+            type="button"
+            className={`${styles.key} ${styles.restoreKey}`}
+            onClick={handleRestoreButton}
+          >
+            {t('restore')}
+          </button>
+          {ROW1.map((char) => (
+            <Key key={char} char={char} isPolishLayout={isPolish} />
+          ))}
+        </div>
+        {/* Row 3: A-L + Read (Enter) */}
+        <div className={styles.row}>
+          {ROW2.map((char) => (
+            <Key key={char} char={char} isPolishLayout={isPolish} />
+          ))}
+          <button
+            type="button"
+            className={`${styles.key} ${styles.readKey}`}
+            onClick={handleRead}
+          >
+            {t('read')}
+          </button>
+        </div>
+        {/* Row 4: Z-M + Accept (Right Shift position) */}
+        <div className={styles.row}>
+          {ROW3.map((char) => (
+            <Key key={char} char={char} isPolishLayout={isPolish} />
+          ))}
+          <button
+            type="button"
+            className={`${styles.key} ${styles.acceptKey}`}
+            onClick={handleAccept}
+          >
+            {t('accept')}
+          </button>
+        </div>
+        {/* Row 5: Space */}
+        <div className={styles.row}>
           <button
             type="button"
             className={`${styles.key} ${styles.spaceKey}`}
@@ -52,36 +87,6 @@ export function Keyboard() {
             aria-label="Space"
           >
             {' '}
-          </button>
-        </div>
-        <div className={styles.row}>
-          <button
-            type="button"
-            className={`${styles.key} ${styles.specialKey}`}
-            onClick={handleRead}
-          >
-            {t('read')}
-          </button>
-          <button
-            type="button"
-            className={`${styles.key} ${styles.specialKey}`}
-            onClick={handleAccept}
-          >
-            {t('accept')}
-          </button>
-          <button
-            type="button"
-            className={`${styles.key} ${styles.specialKey}`}
-            onClick={handleClearButton}
-          >
-            {t('clear')}
-          </button>
-          <button
-            type="button"
-            className={`${styles.key} ${styles.specialKey}`}
-            onClick={handleRestoreButton}
-          >
-            {t('restore')}
           </button>
         </div>
       </div>
