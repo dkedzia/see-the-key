@@ -8,14 +8,62 @@
 
 .historySection {
   flex: 1;
-  overflow-y: auto;
+  display: flex;
+  overflow: hidden;
   padding: 1rem;
+  min-height: 0;
+}
+
+.historyListWrapper {
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .historyList {
   display: flex;
   flex-direction: column-reverse;
   gap: 0.25rem;
+  height: 100%;
+}
+
+.paginationControls {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding-left: 0.5rem;
+}
+
+.pageBtn {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+
+.pageBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pageBtn:disabled:hover {
+  background: var(--color-key-bg);
+}
+
+.pageCounter {
+  font-size: 0.9rem;
+  font-weight: 600;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .inputSection {
