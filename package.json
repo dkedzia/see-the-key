@@ -4,8 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
+    "copy-dictionaries": "node scripts/copy-dictionaries.js",
+    "dev": "npm run copy-dictionaries && vite",
+    "build": "npm run copy-dictionaries && tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "tauri": "tauri",
@@ -15,6 +16,8 @@
   "dependencies": {
     "@tauri-apps/api": "^2.10.0",
     "@tauri-apps/plugin-store": "^2.4.2",
+    "dictionary-en": "^4.0.0",
+    "dictionary-pl": "^2.0.0",
     "i18next": "^25.8.8",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",

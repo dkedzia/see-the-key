@@ -1,9 +1,34 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useAppStore } from '../../stores/useAppStore';
+import { useSuggestions } from '../../services/suggestions/useSuggestions';
 import { HistoryItem } from '../HistoryItem/HistoryItem';
 import styles from './EditorArea.module.css';
 
 const ITEM_HEIGHT_ESTIMATE = 70;
+
+function InlineSuggestions() {
+  const inputLine = useAppStore((s) => s.inputLine);
+  const locale = useAppStore((s) => s.locale);
+  const replaceCurrentWord = useAppStore((s) => s.replaceCurrentWord);
+  const { suggestions } = useSuggestions(inputLine, locale);
+
+  if (!inputLine || suggestions.length === 0) return null;
+
+  return (
+    <div className={styles.suggestionsRow}>
+      {suggestions.map((word) => (
+        <button
+          key={word}
+          type="button"
+          className={styles.suggestionBtn}
+          onClick={() => replaceCurrentWord(word)}
+        >
+          {word}
+        </button>
+      ))}
+    </div>
+  );
+}
 
 export function EditorArea() {
   const { inputLine, history, highlightedHistoryId } = useAppStore();
@@ -127,7 +152,8 @@ export function EditorArea() {
       </div>
       <div className={styles.inputSection}>
         <div className={styles.inputLine} aria-label="Current input">
-          {inputLine || '\u00A0'}
+          <span className={styles.inputText}>{inputLine || '\u00A0'}</span>
+          <InlineSuggestions />
         </div>
       </div>
     </div>
