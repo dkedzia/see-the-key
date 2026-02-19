@@ -35,6 +35,7 @@ jobs:
           echo "VERSION=$version" >> $env:GITHUB_OUTPUT
 
       - name: Build
+        shell: bash
         run: npm run tauri build -- --config '{"version":"${{ steps.get_version.outputs.VERSION }}"}'
 
       - name: Upload to Release
