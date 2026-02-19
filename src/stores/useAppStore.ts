@@ -10,6 +10,7 @@ interface AppState {
 
   setInputLine: (text: string) => void;
   appendToInputLine: (char: string) => void;
+  replaceCurrentWord: (suggestion: string, appendSpace?: boolean) => void;
   clearInputLine: () => void;
   handleClearButton: () => void;
   handleRestoreButton: () => void;
@@ -40,6 +41,19 @@ export const useAppStore = create<AppState>((set, get) => ({
       inputLine: state.inputLine + char,
       highlightedHistoryId: null,
     }));
+  },
+
+  replaceCurrentWord: (suggestion, appendSpace = true) => {
+    const { inputLine } = get();
+    const trimmed = inputLine.trimEnd();
+    const lastSpace = trimmed.lastIndexOf(' ');
+    const prefixEnd = lastSpace >= 0 ? lastSpace + 1 : 0;
+    const before = trimmed.slice(0, prefixEnd);
+    const after = appendSpace ? suggestion + ' ' : suggestion;
+    set({
+      inputLine: before + after,
+      highlightedHistoryId: null,
+    });
   },
 
   clearInputLine: () => {
