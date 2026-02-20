@@ -5,3 +5,5 @@ export interface HistoryItem {
 }
 
 export type Locale = 'pl' | 'en';
+
+export type Theme = 'auto' | 'light' | 'dark';

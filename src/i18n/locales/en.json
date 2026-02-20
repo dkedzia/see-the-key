@@ -7,5 +7,9 @@
   "appTitle": "See the Key",
   "language": "Language",
   "polish": "Polish",
-  "english": "English"
+  "english": "English",
+  "theme": "Theme",
+  "themeAuto": "Auto",
+  "themeLight": "Light",
+  "themeDark": "Dark"
 }

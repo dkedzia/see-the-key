@@ -1,0 +1,32 @@
+.themeSwitcher {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.themeButton {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 44px;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+  border-radius: 8px;
+}
+
+.themeButton:hover {
+  background: var(--color-surface-hover);
+}
+
+.themeButton.active {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: white;
+}
+
+.themeButton svg {
+  flex-shrink: 0;
+}
+
+.label {
+  white-space: nowrap;
+}
