@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import type { HistoryItem, Locale } from '../types';
+import type { HistoryItem, Locale, Theme } from '../types';
 
 interface AppState {
   inputLine: string;
@@ -7,6 +7,7 @@ interface AppState {
   highlightedHistoryId: string | null;
   restoreIndex: number;
   locale: Locale;
+  theme: Theme;
 
   setInputLine: (text: string) => void;
   appendToInputLine: (char: string) => void;
@@ -19,10 +20,19 @@ interface AppState {
   highlightHistoryItem: (id: string | null) => void;
   setHistory: (history: HistoryItem[]) => void;
   setLocale: (locale: Locale) => void;
+  setTheme: (theme: Theme) => void;
 }
 
 function generateId(): string {
   return `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+}
+
+function getInitialTheme(): Theme {
+  const stored = localStorage.getItem('theme');
+  if (stored === 'light' || stored === 'dark' || stored === 'auto') {
+    return stored;
+  }
+  return 'auto';
 }
 
 export const useAppStore = create<AppState>((set, get) => ({
@@ -31,6 +41,7 @@ export const useAppStore = create<AppState>((set, get) => ({
   highlightedHistoryId: null,
   restoreIndex: 0,
   locale: 'pl',
+  theme: getInitialTheme(),
 
   setInputLine: (text) => {
     set({ inputLine: text, highlightedHistoryId: null });
@@ -127,5 +138,10 @@ export const useAppStore = create<AppState>((set, get) => ({
 
   setLocale: (locale) => {
     set({ locale });
+  },
+
+  setTheme: (theme) => {
+    localStorage.setItem('theme', theme);
+    set({ theme });
   },
 }));
