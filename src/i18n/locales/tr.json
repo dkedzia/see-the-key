@@ -53,5 +53,12 @@
   "turkish": "Türkçe",
   "ukrainian": "Ukraynaca",
   "fullscreen": "Tam ekran",
-  "exitFullscreen": "Tam ekrandan çık"
+  "exitFullscreen": "Tam ekrandan çık",
+  "sets": "Setler",
+  "closeSets": "Setleri kapat",
+  "defaultSet": "Varsayılan set",
+  "addSet": "Set ekle",
+  "rename": "Yeniden adlandır",
+  "showKeyboard": "Klavyeyi göster",
+  "hideKeyboard": "Klavyeyi gizle"
 }

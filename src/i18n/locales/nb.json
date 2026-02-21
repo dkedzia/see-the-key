@@ -53,5 +53,12 @@
   "turkish": "Tyrkisk",
   "ukrainian": "Ukrainsk",
   "fullscreen": "Fullskjerm",
-  "exitFullscreen": "Avslutt fullskjerm"
+  "exitFullscreen": "Avslutt fullskjerm",
+  "sets": "Sett",
+  "closeSets": "Lukk sett",
+  "defaultSet": "Standard sett",
+  "addSet": "Legg til sett",
+  "rename": "Gi nytt navn",
+  "showKeyboard": "Vis tastatur",
+  "hideKeyboard": "Skjul tastatur"
 }

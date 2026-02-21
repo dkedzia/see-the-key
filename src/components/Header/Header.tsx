@@ -8,6 +8,10 @@ export function Header() {
   const { t } = useTranslation();
   const isSettingsOpen = useAppStore((s) => s.isSettingsOpen);
   const setSettingsOpen = useAppStore((s) => s.setSettingsOpen);
+  const isSetsViewOpen = useAppStore((s) => s.isSetsViewOpen);
+  const setSetsViewOpen = useAppStore((s) => s.setSetsViewOpen);
+  const isKeyboardVisible = useAppStore((s) => s.isKeyboardVisible);
+  const setKeyboardVisible = useAppStore((s) => s.setKeyboardVisible);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   useEffect(() => {
@@ -21,13 +25,59 @@ export function Header() {
     setIsFullscreen(newState);
   };
 
+  const toggleSetsView = () => {
+    setSetsViewOpen(!isSetsViewOpen);
+  };
+
+  const toggleKeyboard = () => {
+    setKeyboardVisible(!isKeyboardVisible);
+  };
+
   return (
     <header className={styles.header}>
       <h1 className={styles.title}>{t('appTitle')}</h1>
       <div className={styles.controls}>
         <button
           type="button"
-          className={styles.fullscreenButton}
+          className={styles.iconButton}
+          onClick={toggleSetsView}
+          aria-label={isSetsViewOpen ? t('closeSets') : t('sets')}
+          aria-expanded={isSetsViewOpen}
+        >
+          {isSetsViewOpen ? (
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          ) : (
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+            </svg>
+          )}
+        </button>
+        <button
+          type="button"
+          className={styles.iconButton}
+          onClick={toggleKeyboard}
+          aria-label={isKeyboardVisible ? t('hideKeyboard') : t('showKeyboard')}
+          aria-pressed={isKeyboardVisible}
+        >
+          {isKeyboardVisible ? (
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <rect x="2" y="4" width="20" height="16" rx="2" ry="2" />
+              <path d="M6 8h.001M10 8h.001M14 8h.001M18 8h.001M6 12h.001M10 12h.001M14 12h.001M18 12h.001M8 16h8" />
+            </svg>
+          ) : (
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <rect x="2" y="4" width="20" height="16" rx="2" ry="2" />
+              <path d="M6 8h.001M10 8h.001M14 8h.001M18 8h.001M6 12h.001M10 12h.001M14 12h.001M18 12h.001M8 16h8" />
+              <line x1="2" y1="2" x2="22" y2="22" />
+            </svg>
+          )}
+        </button>
+        <button
+          type="button"
+          className={styles.iconButton}
           onClick={toggleFullscreen}
           aria-label={isFullscreen ? t('exitFullscreen') : t('fullscreen')}
         >

@@ -53,5 +53,12 @@
   "turkish": "Turkiska",
   "ukrainian": "Ukrainska",
   "fullscreen": "Helskärm",
-  "exitFullscreen": "Avsluta helskärm"
+  "exitFullscreen": "Avsluta helskärm",
+  "sets": "Uppsättningar",
+  "closeSets": "Stäng uppsättningar",
+  "defaultSet": "Standarduppsättning",
+  "addSet": "Lägg till uppsättning",
+  "rename": "Byt namn",
+  "showKeyboard": "Visa tangentbord",
+  "hideKeyboard": "Dölj tangentbord"
 }

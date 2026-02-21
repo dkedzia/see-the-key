@@ -53,5 +53,12 @@
   "turkish": "Turščina",
   "ukrainian": "Ukrajinščina",
   "fullscreen": "Celozaslonski način",
-  "exitFullscreen": "Izhod iz celozaslonskega načina"
+  "exitFullscreen": "Izhod iz celozaslonskega načina",
+  "sets": "Nizi",
+  "closeSets": "Zapri nize",
+  "defaultSet": "Privzeti niz",
+  "addSet": "Dodaj niz",
+  "rename": "Preimenuj",
+  "showKeyboard": "Prikaži tipkovnico",
+  "hideKeyboard": "Skrij tipkovnico"
 }

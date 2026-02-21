@@ -44,7 +44,7 @@
   outline-offset: 2px;
 }
 
-.fullscreenButton {
+.iconButton {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -59,11 +59,11 @@
   transition: background-color 0.15s, border-color 0.15s;
 }
 
-.fullscreenButton:hover {
+.iconButton:hover {
   background: var(--color-surface-hover);
 }
 
-.fullscreenButton:focus-visible {
+.iconButton:focus-visible {
   outline: 3px solid var(--color-accent);
   outline-offset: 2px;
 }

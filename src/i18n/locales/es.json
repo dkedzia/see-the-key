@@ -53,5 +53,12 @@
   "turkish": "Turco",
   "ukrainian": "Ucraniano",
   "fullscreen": "Pantalla completa",
-  "exitFullscreen": "Salir de pantalla completa"
+  "exitFullscreen": "Salir de pantalla completa",
+  "sets": "Conjuntos",
+  "closeSets": "Cerrar conjuntos",
+  "defaultSet": "Conjunto predeterminado",
+  "addSet": "Añadir conjunto",
+  "rename": "Renombrar",
+  "showKeyboard": "Mostrar teclado",
+  "hideKeyboard": "Ocultar teclado"
 }

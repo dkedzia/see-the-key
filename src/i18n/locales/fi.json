@@ -53,5 +53,12 @@
   "turkish": "Turkki",
   "ukrainian": "Ukraina",
   "fullscreen": "Koko näyttö",
-  "exitFullscreen": "Poistu koko näytöstä"
+  "exitFullscreen": "Poistu koko näytöstä",
+  "sets": "Sarjat",
+  "closeSets": "Sulje sarjat",
+  "defaultSet": "Oletussarja",
+  "addSet": "Lisää sarja",
+  "rename": "Nimeä uudelleen",
+  "showKeyboard": "Näytä näppäimistö",
+  "hideKeyboard": "Piilota näppäimistö"
 }

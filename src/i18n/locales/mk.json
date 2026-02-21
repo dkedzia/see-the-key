@@ -53,5 +53,12 @@
   "turkish": "Турски",
   "ukrainian": "Украински",
   "fullscreen": "Цел екран",
-  "exitFullscreen": "Излез од цел екран"
+  "exitFullscreen": "Излез од цел екран",
+  "sets": "Множества",
+  "closeSets": "Затвори множества",
+  "defaultSet": "Стандардно множество",
+  "addSet": "Додади множество",
+  "rename": "Преименувај",
+  "showKeyboard": "Прикажи тастатура",
+  "hideKeyboard": "Сокриј тастатура"
 }

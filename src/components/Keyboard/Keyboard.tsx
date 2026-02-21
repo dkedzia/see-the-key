@@ -9,8 +9,14 @@ import styles from './Keyboard.module.css';
 
 export function Keyboard() {
   const { t, i18n } = useTranslation();
-  const { inputLine, acceptLine, handleClearButton, handleRestoreButton } =
-    useAppStore();
+  const inputLine = useAppStore((s) => s.inputLine);
+  const acceptLine = useAppStore((s) => s.acceptLine);
+  const handleClearButton = useAppStore((s) => s.handleClearButton);
+  const handleRestoreButton = useAppStore((s) => s.handleRestoreButton);
+  const isInSetNameEditMode = useAppStore((s) => s.isInSetNameEditMode);
+  const clearSetNameInput = useAppStore((s) => s.clearSetNameInput);
+  const appendToSetNameInput = useAppStore((s) => s.appendToSetNameInput);
+  const appendToInputLine = useAppStore((s) => s.appendToInputLine);
 
   const locale = i18n.language as Locale;
 
@@ -19,7 +25,18 @@ export function Keyboard() {
     [locale]
   );
 
+  const inSetEditMode = isInSetNameEditMode();
+
+  const handleClear = () => {
+    if (inSetEditMode) {
+      clearSetNameInput();
+    } else {
+      handleClearButton();
+    }
+  };
+
   const handleRead = async () => {
+    if (inSetEditMode) return;
     if (!inputLine.trim()) return;
     const text = inputLine;
     acceptLine();
@@ -27,7 +44,21 @@ export function Keyboard() {
   };
 
   const handleAccept = () => {
+    if (inSetEditMode) return;
     acceptLine();
+  };
+
+  const handleRestore = () => {
+    if (inSetEditMode) return;
+    handleRestoreButton();
+  };
+
+  const handleSpace = () => {
+    if (inSetEditMode) {
+      appendToSetNameInput(' ');
+    } else {
+      appendToInputLine(' ');
+    }
   };
 
   const renderRow = (keys: RowKey[]) =>
@@ -49,7 +80,7 @@ export function Keyboard() {
           <button
             type="button"
             className={`${styles.key} ${styles.clearKey}`}
-            onClick={handleClearButton}
+            onClick={handleClear}
           >
             {t('clear')}
           </button>
@@ -59,7 +90,8 @@ export function Keyboard() {
           <button
             type="button"
             className={`${styles.key} ${styles.restoreKey}`}
-            onClick={handleRestoreButton}
+            onClick={handleRestore}
+            disabled={inSetEditMode}
           >
             {t('restore')}
           </button>
@@ -72,6 +104,7 @@ export function Keyboard() {
             type="button"
             className={`${styles.key} ${styles.readKey}`}
             onClick={handleRead}
+            disabled={inSetEditMode}
           >
             {t('read')}
           </button>
@@ -83,6 +116,7 @@ export function Keyboard() {
             type="button"
             className={`${styles.key} ${styles.acceptKey}`}
             onClick={handleAccept}
+            disabled={inSetEditMode}
           >
             {t('accept')}
           </button>
@@ -92,7 +126,7 @@ export function Keyboard() {
           <button
             type="button"
             className={`${styles.key} ${styles.spaceKey}`}
-            onClick={() => useAppStore.getState().appendToInputLine(' ')}
+            onClick={handleSpace}
             aria-label="Space"
           >
             {' '}

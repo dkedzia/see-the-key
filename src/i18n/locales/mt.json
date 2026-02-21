@@ -53,5 +53,12 @@
   "turkish": "Tork",
   "ukrainian": "Ukren",
   "fullscreen": "Skrin sħiħ",
-  "exitFullscreen": "Oħroġ minn skrin sħiħ"
+  "exitFullscreen": "Oħroġ minn skrin sħiħ",
+  "sets": "Settijiet",
+  "closeSets": "Agħlaq is-settijiet",
+  "defaultSet": "Sett awtomatiku",
+  "addSet": "Żid sett",
+  "rename": "Semmi mill-ġdid",
+  "showKeyboard": "Uri t-tastiera",
+  "hideKeyboard": "Aħbi t-tastiera"
 }

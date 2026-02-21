@@ -53,5 +53,12 @@
   "turkish": "Turcă",
   "ukrainian": "Ucraineană",
   "fullscreen": "Ecran complet",
-  "exitFullscreen": "Ieșire din ecran complet"
+  "exitFullscreen": "Ieșire din ecran complet",
+  "sets": "Seturi",
+  "closeSets": "Închide seturi",
+  "defaultSet": "Set implicit",
+  "addSet": "Adaugă set",
+  "rename": "Redenumește",
+  "showKeyboard": "Arată tastatura",
+  "hideKeyboard": "Ascunde tastatura"
 }

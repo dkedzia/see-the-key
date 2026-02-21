@@ -53,5 +53,12 @@
   "turkish": "Turkish",
   "ukrainian": "Ukrainian",
   "fullscreen": "Fullscreen",
-  "exitFullscreen": "Exit fullscreen"
+  "exitFullscreen": "Exit fullscreen",
+  "sets": "Sets",
+  "closeSets": "Close sets",
+  "defaultSet": "Default Set",
+  "addSet": "Add set",
+  "rename": "Rename",
+  "showKeyboard": "Show keyboard",
+  "hideKeyboard": "Hide keyboard"
 }

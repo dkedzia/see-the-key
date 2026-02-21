@@ -53,5 +53,12 @@
   "turkish": "Turski",
   "ukrainian": "Ukrajinski",
   "fullscreen": "Puni ekran",
-  "exitFullscreen": "Izlaz iz punog ekrana"
+  "exitFullscreen": "Izlaz iz punog ekrana",
+  "sets": "Skupovi",
+  "closeSets": "Zatvori skupove",
+  "defaultSet": "Podrazumijevani skup",
+  "addSet": "Dodaj skup",
+  "rename": "Preimenuj",
+  "showKeyboard": "Prikaži tastaturu",
+  "hideKeyboard": "Sakrij tastaturu"
 }

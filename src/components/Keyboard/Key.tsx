@@ -8,13 +8,23 @@ interface RowKeyComponentProps {
 
 export function RowKeyComponent({ rowKey }: RowKeyComponentProps) {
   const appendToInputLine = useAppStore((s) => s.appendToInputLine);
+  const appendToSetNameInput = useAppStore((s) => s.appendToSetNameInput);
+  const isInSetNameEditMode = useAppStore((s) => s.isInSetNameEditMode);
+
+  const handleAppend = (char: string) => {
+    if (isInSetNameEditMode()) {
+      appendToSetNameInput(char);
+    } else {
+      appendToInputLine(char);
+    }
+  };
 
   if (rowKey.type === 'normal' || !rowKey.alt) {
     return (
       <button
         type="button"
         className={styles.key}
-        onClick={() => appendToInputLine(rowKey.main)}
+        onClick={() => handleAppend(rowKey.main)}
         aria-label={`Key ${rowKey.main}`}
       >
         {rowKey.main.toUpperCase()}
@@ -28,7 +38,7 @@ export function RowKeyComponent({ rowKey }: RowKeyComponentProps) {
       <button
         type="button"
         className={styles.splitKeyTop}
-        onClick={() => appendToInputLine(rowKey.main)}
+        onClick={() => handleAppend(rowKey.main)}
         aria-label={`Key ${rowKey.main} or ${alt}`}
       >
         {rowKey.main.toUpperCase()}
@@ -36,7 +46,7 @@ export function RowKeyComponent({ rowKey }: RowKeyComponentProps) {
       <button
         type="button"
         className={styles.splitKeyBottom}
-        onClick={() => appendToInputLine(alt)}
+        onClick={() => handleAppend(alt)}
         aria-label={`Key ${alt}`}
       >
         {alt.toUpperCase()}

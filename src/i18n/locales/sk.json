@@ -53,5 +53,12 @@
   "turkish": "Turečtina",
   "ukrainian": "Ukrajinčina",
   "fullscreen": "Celá obrazovka",
-  "exitFullscreen": "Ukončiť celú obrazovku"
+  "exitFullscreen": "Ukončiť celú obrazovku",
+  "sets": "Sady",
+  "closeSets": "Zavrieť sady",
+  "defaultSet": "Predvolená sada",
+  "addSet": "Pridať sadu",
+  "rename": "Premenovať",
+  "showKeyboard": "Zobraziť klávesnicu",
+  "hideKeyboard": "Skryť klávesnicu"
 }

@@ -53,5 +53,12 @@
   "turkish": "Türkisch",
   "ukrainian": "Ukrainisch",
   "fullscreen": "Vollbild",
-  "exitFullscreen": "Vollbild beenden"
+  "exitFullscreen": "Vollbild beenden",
+  "sets": "Sets",
+  "closeSets": "Sets schließen",
+  "defaultSet": "Standard-Set",
+  "addSet": "Set hinzufügen",
+  "rename": "Umbenennen",
+  "showKeyboard": "Tastatur anzeigen",
+  "hideKeyboard": "Tastatur ausblenden"
 }

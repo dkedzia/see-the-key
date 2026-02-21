@@ -53,5 +53,12 @@
   "turkish": "Турски",
   "ukrainian": "Украински",
   "fullscreen": "Цял екран",
-  "exitFullscreen": "Изход от цял екран"
+  "exitFullscreen": "Изход от цял екран",
+  "sets": "Набори",
+  "closeSets": "Затвори набори",
+  "defaultSet": "Набор по подразбиране",
+  "addSet": "Добави набор",
+  "rename": "Преименувай",
+  "showKeyboard": "Покажи клавиатура",
+  "hideKeyboard": "Скрий клавиатура"
 }
