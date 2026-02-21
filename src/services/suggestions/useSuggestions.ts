@@ -1,11 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
-import { getSuggestions, loadDictionary, type DictLang } from './suggestionService';
+import { getSuggestions, loadDictionary } from './suggestionService';
 import type { Locale } from '../../types';
-
-const LOCALE_TO_DICT: Record<Locale, DictLang> = {
-  pl: 'pl',
-  en: 'en',
-};
 
 const DEBOUNCE_MS = 180;
 
@@ -17,11 +12,10 @@ function extractCurrentWordPrefix(inputLine: string): string {
 
 export function useSuggestions(inputLine: string, locale: Locale) {
   const [suggestions, setSuggestions] = useState<string[]>([]);
-  const dictLang = LOCALE_TO_DICT[locale];
 
   useEffect(() => {
-    loadDictionary(dictLang);
-  }, [dictLang]);
+    loadDictionary(locale);
+  }, [locale]);
 
   const prefix = useMemo(() => extractCurrentWordPrefix(inputLine), [inputLine]);
 
@@ -32,13 +26,13 @@ export function useSuggestions(inputLine: string, locale: Locale) {
     }
 
     const timeoutId = setTimeout(() => {
-      getSuggestions(prefix, dictLang)
+      getSuggestions(prefix, locale)
         .then(setSuggestions)
         .catch(() => setSuggestions([]));
     }, DEBOUNCE_MS);
 
     return () => clearTimeout(timeoutId);
-  }, [prefix, dictLang]);
+  }, [prefix, locale]);
 
   return { suggestions };
 }

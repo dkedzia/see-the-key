@@ -3,7 +3,9 @@
  * The main thread is never blocked -- keyboard stays responsive.
  */
 
-export type DictLang = 'pl' | 'en';
+import type { Locale } from '../../types';
+
+export type DictLang = Locale;
 
 const worker = new Worker(
   new URL('./suggestion.worker.ts', import.meta.url),

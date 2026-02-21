@@ -7,6 +7,8 @@ import { AVAILABLE_LOCALES } from '../../i18n/locales';
 import type { Locale, Theme } from '../../types';
 import styles from './Settings.module.css';
 
+const LANGUAGES_PER_PAGE = 6;
+
 const THEME_OPTIONS: { value: Theme; labelKey: string; icon: React.ReactNode }[] = [
   {
     value: 'auto',
@@ -46,6 +48,12 @@ const THEME_OPTIONS: { value: Theme; labelKey: string; icon: React.ReactNode }[]
   },
 ];
 
+function getPageForLocale(localeCode: Locale): number {
+  const index = AVAILABLE_LOCALES.findIndex((l) => l.code === localeCode);
+  if (index === -1) return 1;
+  return Math.floor(index / LANGUAGES_PER_PAGE) + 1;
+}
+
 export function Settings() {
   const { t, i18n } = useTranslation();
   const theme = useAppStore((s) => s.theme);
@@ -54,6 +62,11 @@ export function Settings() {
   const setLocale = useAppStore((s) => s.setLocale);
 
   const [version, setVersion] = useState('');
+  const [currentPage, setCurrentPage] = useState(() => getPageForLocale(locale));
+
+  const totalPages = Math.ceil(AVAILABLE_LOCALES.length / LANGUAGES_PER_PAGE);
+  const startIndex = (currentPage - 1) * LANGUAGES_PER_PAGE;
+  const visibleLocales = AVAILABLE_LOCALES.slice(startIndex, startIndex + LANGUAGES_PER_PAGE);
 
   useEffect(() => {
     getVersion().then(setVersion);
@@ -62,6 +75,14 @@ export function Settings() {
   const handleLocaleChange = (newLocale: Locale) => {
     setLocale(newLocale);
     i18n.changeLanguage(newLocale);
+  };
+
+  const handlePageUp = () => {
+    if (currentPage > 1) setCurrentPage(currentPage - 1);
+  };
+
+  const handlePageDown = () => {
+    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
   };
 
   return (
@@ -86,18 +107,43 @@ export function Settings() {
 
       <section className={styles.section}>
         <h2 className={styles.sectionTitle}>{t('languageSection')}</h2>
-        <div className={styles.optionGroup} role="group" aria-label={t('language')}>
-          {AVAILABLE_LOCALES.map(({ code, labelKey }) => (
+        <div className={styles.languageSection}>
+          <div className={styles.languageGroup} role="group" aria-label={t('language')}>
+            {visibleLocales.map(({ code, nativeName }) => (
+              <button
+                key={code}
+                type="button"
+                className={`${styles.languageButton} ${locale === code ? styles.active : ''}`}
+                onClick={() => handleLocaleChange(code)}
+                aria-pressed={locale === code}
+              >
+                <span>{nativeName}</span>
+              </button>
+            ))}
+          </div>
+          <div className={styles.paginationControls}>
             <button
-              key={code}
               type="button"
-              className={`${styles.optionButton} ${locale === code ? styles.active : ''}`}
-              onClick={() => handleLocaleChange(code)}
-              aria-pressed={locale === code}
+              className={styles.pageBtn}
+              onClick={handlePageUp}
+              disabled={currentPage <= 1}
+              aria-label="Previous page"
             >
-              <span>{t(labelKey)}</span>
+              ▲
             </button>
-          ))}
+            <span className={styles.pageCounter} aria-live="polite">
+              {currentPage} / {totalPages}
+            </span>
+            <button
+              type="button"
+              className={styles.pageBtn}
+              onClick={handlePageDown}
+              disabled={currentPage >= totalPages}
+              aria-label="Next page"
+            >
+              ▼
+            </button>
+          </div>
         </div>
       </section>
 

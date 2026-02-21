@@ -1,47 +1,46 @@
 import { useAppStore } from '../../stores/useAppStore';
-import { POLISH_SPLIT_KEYS } from '../../data/keyboardLayout';
+import type { RowKey } from '../../data/keyboardLayout';
 import styles from './Key.module.css';
 
-interface KeyProps {
-  char: string;
-  isPolishLayout: boolean;
+interface RowKeyComponentProps {
+  rowKey: RowKey;
 }
 
-export function Key({ char, isPolishLayout }: KeyProps) {
+export function RowKeyComponent({ rowKey }: RowKeyComponentProps) {
   const appendToInputLine = useAppStore((s) => s.appendToInputLine);
-  const splitKey = isPolishLayout ? POLISH_SPLIT_KEYS[char] : null;
 
-  if (splitKey) {
+  if (rowKey.type === 'normal' || !rowKey.alt) {
     return (
-      <div className={styles.splitKey}>
-        <button
-          type="button"
-          className={styles.splitKeyTop}
-          onClick={() => appendToInputLine(splitKey.main)}
-          aria-label={`Key ${splitKey.main} or ${splitKey.alt}`}
-        >
-          {splitKey.main.toUpperCase()}
-        </button>
-        <button
-          type="button"
-          className={styles.splitKeyBottom}
-          onClick={() => appendToInputLine(splitKey.alt)}
-          aria-label={`Key ${splitKey.alt}`}
-        >
-          {splitKey.alt.toUpperCase()}
-        </button>
-      </div>
+      <button
+        type="button"
+        className={styles.key}
+        onClick={() => appendToInputLine(rowKey.main)}
+        aria-label={`Key ${rowKey.main}`}
+      >
+        {rowKey.main.toUpperCase()}
+      </button>
     );
   }
 
+  const alt = rowKey.alt;
   return (
-    <button
-      type="button"
-      className={styles.key}
-      onClick={() => appendToInputLine(char)}
-      aria-label={`Key ${char}`}
-    >
-      {char.toUpperCase()}
-    </button>
+    <div className={styles.splitKey}>
+      <button
+        type="button"
+        className={styles.splitKeyTop}
+        onClick={() => appendToInputLine(rowKey.main)}
+        aria-label={`Key ${rowKey.main} or ${alt}`}
+      >
+        {rowKey.main.toUpperCase()}
+      </button>
+      <button
+        type="button"
+        className={styles.splitKeyBottom}
+        onClick={() => appendToInputLine(alt)}
+        aria-label={`Key ${alt}`}
+      >
+        {alt.toUpperCase()}
+      </button>
+    </div>
   );
 }

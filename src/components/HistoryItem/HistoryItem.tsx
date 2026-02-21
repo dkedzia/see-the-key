@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useAppStore } from '../../stores/useAppStore';
 import { speakText } from '../../utils/tts';
-import type { HistoryItem as HistoryItemType } from '../../types';
+import type { HistoryItem as HistoryItemType, Locale } from '../../types';
 import styles from './HistoryItem.module.css';
 
 interface HistoryItemProps {
@@ -14,10 +14,7 @@ export function HistoryItem({ item, isHighlighted }: HistoryItemProps) {
   const { deleteHistoryItem, setInputLine } = useAppStore();
 
   const handleRead = async () => {
-    await speakText(
-      item.text,
-      i18n.language === 'pl' ? 'pl-PL' : 'en-US',
-    );
+    await speakText(item.text, i18n.language as Locale);
   };
 
   const handleRestore = () => {

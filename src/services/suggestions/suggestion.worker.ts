@@ -1,4 +1,4 @@
-export type DictLang = 'pl' | 'en';
+type DictLang = string;
 
 interface LoadDictionaryMsg {
   type: 'loadDictionary';
@@ -33,7 +33,7 @@ function parseDicForPrefixIndex(dicText: string): string[] {
         ? line.slice(0, hashIdx).trim()
         : line.trim();
 
-    if (word.length > 0 && /[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]/.test(word)) {
+    if (word.length > 0 && /\p{L}/u.test(word)) {
       words.push(word.toLowerCase());
     }
   }

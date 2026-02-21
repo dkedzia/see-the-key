@@ -1,8 +1,10 @@
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAppStore } from '../../stores/useAppStore';
 import { speakText } from '../../utils/tts';
-import { ROW1, ROW2, ROW3, ROW4 } from '../../data/keyboardLayout';
-import { Key } from './Key';
+import { NUMBER_ROW, getKeyboardRowsForLocale, type RowKey } from '../../data/keyboardLayout';
+import type { Locale } from '../../types';
+import { RowKeyComponent } from './Key';
 import styles from './Keyboard.module.css';
 
 export function Keyboard() {
@@ -10,26 +12,39 @@ export function Keyboard() {
   const { inputLine, acceptLine, handleClearButton, handleRestoreButton } =
     useAppStore();
 
-  const isPolish = i18n.language === 'pl';
+  const locale = i18n.language as Locale;
+
+  const { row1, row2, row3 } = useMemo(
+    () => getKeyboardRowsForLocale(locale),
+    [locale]
+  );
 
   const handleRead = async () => {
     if (!inputLine.trim()) return;
     const text = inputLine;
     acceptLine();
-    await speakText(text, isPolish ? 'pl-PL' : 'en-US');
+    await speakText(text, locale);
   };
 
   const handleAccept = () => {
     acceptLine();
   };
 
+  const renderRow = (keys: RowKey[]) =>
+    keys.map((key, idx) => (
+      <RowKeyComponent key={`${key.main}-${idx}`} rowKey={key} />
+    ));
+
   return (
     <div className={styles.keyboard}>
       <div className={styles.rows}>
         {/* Row 1: Numbers + Clear (Backspace position) */}
         <div className={styles.row}>
-          {ROW4.map((char) => (
-            <Key key={char} char={char} isPolishLayout={false} />
+          {NUMBER_ROW.map((char) => (
+            <RowKeyComponent
+              key={char}
+              rowKey={{ type: 'normal', main: char }}
+            />
           ))}
           <button
             type="button"
@@ -39,7 +54,7 @@ export function Keyboard() {
             {t('clear')}
           </button>
         </div>
-        {/* Row 2: Restore (Tab) + Q-P */}
+        {/* Row 2: Restore (Tab) + first letter row */}
         <div className={styles.row}>
           <button
             type="button"
@@ -48,15 +63,11 @@ export function Keyboard() {
           >
             {t('restore')}
           </button>
-          {ROW1.map((char) => (
-            <Key key={char} char={char} isPolishLayout={isPolish} />
-          ))}
+          {renderRow(row1)}
         </div>
-        {/* Row 3: A-L + Read (Enter) */}
+        {/* Row 3: second letter row + Read (Enter) */}
         <div className={styles.row}>
-          {ROW2.map((char) => (
-            <Key key={char} char={char} isPolishLayout={isPolish} />
-          ))}
+          {renderRow(row2)}
           <button
             type="button"
             className={`${styles.key} ${styles.readKey}`}
@@ -65,11 +76,9 @@ export function Keyboard() {
             {t('read')}
           </button>
         </div>
-        {/* Row 4: Z-M + Accept (Right Shift position) */}
+        {/* Row 4: third letter row + Accept (Right Shift position) */}
         <div className={styles.row}>
-          {ROW3.map((char) => (
-            <Key key={char} char={char} isPolishLayout={isPolish} />
-          ))}
+          {renderRow(row3)}
           <button
             type="button"
             className={`${styles.key} ${styles.acceptKey}`}

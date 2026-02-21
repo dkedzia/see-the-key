@@ -1,5 +1,8 @@
 import { create } from 'zustand';
 import type { HistoryItem, Locale, Theme } from '../types';
+import { AVAILABLE_LOCALES } from '../i18n/locales';
+
+const AVAILABLE_LOCALE_CODES = AVAILABLE_LOCALES.map((l) => l.code);
 
 interface AppState {
   inputLine: string;
@@ -37,12 +40,31 @@ function getInitialTheme(): Theme {
   return 'auto';
 }
 
+function getSystemLocale(): Locale {
+  const browserLangs = navigator.languages || [navigator.language];
+  for (const lang of browserLangs) {
+    const code = lang.split('-')[0].toLowerCase();
+    if (AVAILABLE_LOCALE_CODES.includes(code as Locale)) {
+      return code as Locale;
+    }
+  }
+  return 'en';
+}
+
+function getInitialLocale(): Locale {
+  const stored = localStorage.getItem('locale');
+  if (stored && AVAILABLE_LOCALE_CODES.includes(stored as Locale)) {
+    return stored as Locale;
+  }
+  return getSystemLocale();
+}
+
 export const useAppStore = create<AppState>((set, get) => ({
   inputLine: '',
   history: [],
   highlightedHistoryId: null,
   restoreIndex: 0,
-  locale: 'pl',
+  locale: getInitialLocale(),
   theme: getInitialTheme(),
   isSettingsOpen: false,
 
@@ -140,6 +162,7 @@ export const useAppStore = create<AppState>((set, get) => ({
   },
 
   setLocale: (locale) => {
+    localStorage.setItem('locale', locale);
     set({ locale });
   },
 
