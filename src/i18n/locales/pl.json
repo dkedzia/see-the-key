@@ -11,5 +11,12 @@
   "theme": "Motyw",
   "themeAuto": "Auto",
   "themeLight": "Jasny",
-  "themeDark": "Ciemny"
+  "themeDark": "Ciemny",
+  "settings": "Ustawienia",
+  "closeSettings": "Zamknij ustawienia",
+  "themeSection": "Motyw",
+  "languageSection": "Język",
+  "version": "Wersja",
+  "author": "Autor",
+  "repository": "Repozytorium na GitHub"
 }

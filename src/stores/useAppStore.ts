@@ -8,6 +8,7 @@ interface AppState {
   restoreIndex: number;
   locale: Locale;
   theme: Theme;
+  isSettingsOpen: boolean;
 
   setInputLine: (text: string) => void;
   appendToInputLine: (char: string) => void;
@@ -21,6 +22,7 @@ interface AppState {
   setHistory: (history: HistoryItem[]) => void;
   setLocale: (locale: Locale) => void;
   setTheme: (theme: Theme) => void;
+  setSettingsOpen: (open: boolean) => void;
 }
 
 function generateId(): string {
@@ -42,6 +44,7 @@ export const useAppStore = create<AppState>((set, get) => ({
   restoreIndex: 0,
   locale: 'pl',
   theme: getInitialTheme(),
+  isSettingsOpen: false,
 
   setInputLine: (text) => {
     set({ inputLine: text, highlightedHistoryId: null });
@@ -143,5 +146,9 @@ export const useAppStore = create<AppState>((set, get) => ({
   setTheme: (theme) => {
     localStorage.setItem('theme', theme);
     set({ theme });
+  },
+
+  setSettingsOpen: (open) => {
+    set({ isSettingsOpen: open });
   },
 }));

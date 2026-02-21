@@ -11,5 +11,12 @@
   "theme": "Theme",
   "themeAuto": "Auto",
   "themeLight": "Light",
-  "themeDark": "Dark"
+  "themeDark": "Dark",
+  "settings": "Settings",
+  "closeSettings": "Close settings",
+  "themeSection": "Theme",
+  "languageSection": "Language",
+  "version": "Version",
+  "author": "Author",
+  "repository": "GitHub repository"
 }
