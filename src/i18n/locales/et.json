@@ -51,5 +51,7 @@
   "spanish": "Hispaania",
   "swedish": "Rootsi",
   "turkish": "Türgi",
-  "ukrainian": "Ukraina"
+  "ukrainian": "Ukraina",
+  "fullscreen": "Täisekraan",
+  "exitFullscreen": "Välju täisekraanist"
 }

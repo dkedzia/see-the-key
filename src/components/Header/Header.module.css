@@ -43,3 +43,27 @@
   outline: 3px solid var(--color-accent);
   outline-offset: 2px;
 }
+
+.fullscreenButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0.5rem;
+  background: var(--color-surface);
+  border: 2px solid var(--color-border);
+  border-radius: 8px;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: background-color 0.15s, border-color 0.15s;
+}
+
+.fullscreenButton:hover {
+  background: var(--color-surface-hover);
+}
+
+.fullscreenButton:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
