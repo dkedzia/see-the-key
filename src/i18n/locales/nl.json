@@ -53,5 +53,12 @@
   "turkish": "Turks",
   "ukrainian": "Oekraïens",
   "fullscreen": "Volledig scherm",
-  "exitFullscreen": "Volledig scherm afsluiten"
+  "exitFullscreen": "Volledig scherm afsluiten",
+  "sets": "Sets",
+  "closeSets": "Sets sluiten",
+  "defaultSet": "Standaard set",
+  "addSet": "Set toevoegen",
+  "rename": "Hernoemen",
+  "showKeyboard": "Toetsenbord tonen",
+  "hideKeyboard": "Toetsenbord verbergen"
 }

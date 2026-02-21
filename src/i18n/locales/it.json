@@ -53,5 +53,12 @@
   "turkish": "Turco",
   "ukrainian": "Ucraino",
   "fullscreen": "Schermo intero",
-  "exitFullscreen": "Esci da schermo intero"
+  "exitFullscreen": "Esci da schermo intero",
+  "sets": "Set",
+  "closeSets": "Chiudi set",
+  "defaultSet": "Set predefinito",
+  "addSet": "Aggiungi set",
+  "rename": "Rinomina",
+  "showKeyboard": "Mostra tastiera",
+  "hideKeyboard": "Nascondi tastiera"
 }

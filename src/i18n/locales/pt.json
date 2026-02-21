@@ -53,5 +53,12 @@
   "turkish": "Turco",
   "ukrainian": "Ucraniano",
   "fullscreen": "Tela cheia",
-  "exitFullscreen": "Sair da tela cheia"
+  "exitFullscreen": "Sair da tela cheia",
+  "sets": "Conjuntos",
+  "closeSets": "Fechar conjuntos",
+  "defaultSet": "Conjunto padrão",
+  "addSet": "Adicionar conjunto",
+  "rename": "Renomear",
+  "showKeyboard": "Mostrar teclado",
+  "hideKeyboard": "Esconder teclado"
 }

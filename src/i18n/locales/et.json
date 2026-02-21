@@ -53,5 +53,12 @@
   "turkish": "Türgi",
   "ukrainian": "Ukraina",
   "fullscreen": "Täisekraan",
-  "exitFullscreen": "Välju täisekraanist"
+  "exitFullscreen": "Välju täisekraanist",
+  "sets": "Komplektid",
+  "closeSets": "Sulge komplektid",
+  "defaultSet": "Vaikekomplekt",
+  "addSet": "Lisa komplekt",
+  "rename": "Nimeta ümber",
+  "showKeyboard": "Kuva klaviatuur",
+  "hideKeyboard": "Peida klaviatuur"
 }

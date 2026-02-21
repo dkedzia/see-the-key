@@ -53,5 +53,12 @@
   "turkish": "Tierkesch",
   "ukrainian": "Ukrainesch",
   "fullscreen": "Vollbildschierm",
-  "exitFullscreen": "Vollbildschierm verloossen"
+  "exitFullscreen": "Vollbildschierm verloossen",
+  "sets": "Sätz",
+  "closeSets": "Sätz zoumaachen",
+  "defaultSet": "Standard Saz",
+  "addSet": "Saz bäisetzen",
+  "rename": "Ëmbenennen",
+  "showKeyboard": "Tastatur weisen",
+  "hideKeyboard": "Tastatur verstoppen"
 }

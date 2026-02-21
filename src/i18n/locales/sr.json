@@ -53,5 +53,12 @@
   "turkish": "Турски",
   "ukrainian": "Украјински",
   "fullscreen": "Цео екран",
-  "exitFullscreen": "Излаз из целог екрана"
+  "exitFullscreen": "Излаз из целог екрана",
+  "sets": "Скупови",
+  "closeSets": "Затвори скупове",
+  "defaultSet": "Подразумевани скуп",
+  "addSet": "Додај скуп",
+  "rename": "Преименуј",
+  "showKeyboard": "Прикажи тастатуру",
+  "hideKeyboard": "Сакриј тастатуру"
 }

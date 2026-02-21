@@ -4,7 +4,8 @@ import { useSuggestions } from '../../services/suggestions/useSuggestions';
 import { HistoryItem } from '../HistoryItem/HistoryItem';
 import styles from './EditorArea.module.css';
 
-const ITEM_HEIGHT_ESTIMATE = 70;
+const ITEM_HEIGHT_ESTIMATE = 78;
+const COLUMN_WIDTH_ESTIMATE = 508;
 
 function InlineSuggestions() {
   const inputLine = useAppStore((s) => s.inputLine);
@@ -32,91 +33,80 @@ function InlineSuggestions() {
 
 export function EditorArea() {
   const { inputLine, history, highlightedHistoryId } = useAppStore();
-  const [itemsPerPage, setItemsPerPage] = useState(1);
+  const [rowsPerColumn, setRowsPerColumn] = useState(1);
+  const [columnsCount, setColumnsCount] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
-  const [anchorMessageId, setAnchorMessageId] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const listRef = useRef<HTMLDivElement>(null);
+  const prevHistoryRef = useRef(history);
 
+  useEffect(() => {
+    if (prevHistoryRef.current !== history) {
+      setCurrentPage(1);
+      prevHistoryRef.current = history;
+    }
+  }, [history]);
+
+  const itemsPerPage = rowsPerColumn * columnsCount;
   const totalPages = Math.max(1, Math.ceil(history.length / itemsPerPage));
   const clampedPage = Math.min(Math.max(1, currentPage), totalPages);
   const pageStartIndex = (clampedPage - 1) * itemsPerPage;
   const pageEndIndex = Math.min(pageStartIndex + itemsPerPage, history.length);
   const visibleHistory = history.slice(pageStartIndex, pageEndIndex);
 
-  const updateItemsPerPage = useCallback(() => {
+  const updateGridDimensions = useCallback(() => {
     const container = containerRef.current;
     if (!container) return;
 
     const height = container.clientHeight;
-    const newItemsPerPage = Math.max(1, Math.floor(height / ITEM_HEIGHT_ESTIMATE));
-    setItemsPerPage(newItemsPerPage);
+    const width = container.clientWidth;
+    const newRowsPerColumn = Math.max(1, Math.floor(height / ITEM_HEIGHT_ESTIMATE));
+    const newColumnsCount = Math.max(1, Math.floor(width / COLUMN_WIDTH_ESTIMATE));
+    
+    setRowsPerColumn(newRowsPerColumn);
+    setColumnsCount(newColumnsCount);
   }, []);
 
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
-    updateItemsPerPage();
-    const observer = new ResizeObserver(updateItemsPerPage);
+    updateGridDimensions();
+    const observer = new ResizeObserver(updateGridDimensions);
     observer.observe(container);
 
     return () => observer.disconnect();
-  }, [updateItemsPerPage]);
+  }, [updateGridDimensions]);
 
   useEffect(() => {
-    const newTotalPages = Math.max(1, Math.ceil(history.length / itemsPerPage));
-    setCurrentPage((prev) => Math.min(prev, newTotalPages));
+    const list = listRef.current;
+    if (list) {
+      list.style.setProperty('--rows-count', String(rowsPerColumn));
+    }
+  }, [rowsPerColumn]);
+
+  useEffect(() => {
+    if (itemsPerPage > 0) {
+      const newTotalPages = Math.max(1, Math.ceil(history.length / itemsPerPage));
+      setCurrentPage((prev) => Math.min(prev, newTotalPages));
+    }
   }, [history.length, itemsPerPage]);
 
-  useEffect(() => {
-    if (anchorMessageId && itemsPerPage > 0 && history.length > 0) {
-      const idx = history.findIndex((h) => h.id === anchorMessageId);
-      if (idx >= 0) {
-        const maxPageStart = Math.max(0, history.length - itemsPerPage);
-        const pageStart = Math.max(
-          0,
-          Math.min(idx - itemsPerPage + 1, maxPageStart),
-        );
-        const newPage = Math.floor(pageStart / itemsPerPage) + 1;
-        setCurrentPage(Math.max(1, Math.min(newPage, totalPages)));
-      }
-    }
-  }, [itemsPerPage, anchorMessageId, history, totalPages]);
-
-  const handlePageUp = () => {
-    if (clampedPage >= totalPages) return;
-    const newPage = clampedPage + 1;
-    setCurrentPage(newPage);
-    if (newPage === totalPages) {
-      setAnchorMessageId(history[0]?.id ?? null);
-    }
-  };
-
-  const handlePageDown = () => {
+  const goToNewerPage = () => {
     if (clampedPage <= 1) return;
-    const newPage = clampedPage - 1;
-    setCurrentPage(newPage);
-    if (newPage === 1) {
-      setAnchorMessageId(history[0]?.id ?? null);
-    }
+    setCurrentPage(clampedPage - 1);
   };
 
-  const bottomMessageId =
-    visibleHistory.length > 0
-      ? visibleHistory[visibleHistory.length - 1].id
-      : null;
-
-  useEffect(() => {
-    if (bottomMessageId && clampedPage > 1 && clampedPage < totalPages) {
-      setAnchorMessageId(bottomMessageId);
-    }
-  }, [bottomMessageId, clampedPage, totalPages]);
+  const goToOlderPage = () => {
+    if (clampedPage >= totalPages) return;
+    setCurrentPage(clampedPage + 1);
+  };
 
   return (
     <div className={styles.editorArea}>
       <div className={styles.historySection}>
         <div ref={containerRef} className={styles.historyListWrapper}>
-          <div className={styles.historyList}>
+          <div ref={listRef} className={styles.historyList}>
             {visibleHistory.map((item) => (
               <HistoryItem
                 key={item.id}
@@ -130,9 +120,9 @@ export function EditorArea() {
           <button
             type="button"
             className={styles.pageBtn}
-            onClick={handlePageUp}
-            disabled={clampedPage >= totalPages}
-            aria-label="Older messages"
+            onClick={goToNewerPage}
+            disabled={clampedPage <= 1}
+            aria-label="Newer messages"
           >
             ▲
           </button>
@@ -142,9 +132,9 @@ export function EditorArea() {
           <button
             type="button"
             className={styles.pageBtn}
-            onClick={handlePageDown}
-            disabled={clampedPage <= 1}
-            aria-label="Newer messages"
+            onClick={goToOlderPage}
+            disabled={clampedPage >= totalPages}
+            aria-label="Older messages"
           >
             ▼
           </button>

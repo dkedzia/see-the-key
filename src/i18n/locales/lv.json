@@ -53,5 +53,12 @@
   "turkish": "Turku",
   "ukrainian": "Ukraiņu",
   "fullscreen": "Pilnekrāna režīms",
-  "exitFullscreen": "Iziet no pilnekrāna režīma"
+  "exitFullscreen": "Iziet no pilnekrāna režīma",
+  "sets": "Komplekti",
+  "closeSets": "Aizvērt komplektus",
+  "defaultSet": "Noklusējuma komplekts",
+  "addSet": "Pievienot komplektu",
+  "rename": "Pārdēvēt",
+  "showKeyboard": "Rādīt tastatūru",
+  "hideKeyboard": "Paslēpt tastatūru"
 }

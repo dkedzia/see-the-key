@@ -53,5 +53,12 @@
   "turkish": "Török",
   "ukrainian": "Ukrán",
   "fullscreen": "Teljes képernyő",
-  "exitFullscreen": "Kilépés a teljes képernyőből"
+  "exitFullscreen": "Kilépés a teljes képernyőből",
+  "sets": "Készletek",
+  "closeSets": "Készletek bezárása",
+  "defaultSet": "Alapértelmezett készlet",
+  "addSet": "Készlet hozzáadása",
+  "rename": "Átnevezés",
+  "showKeyboard": "Billentyűzet megjelenítése",
+  "hideKeyboard": "Billentyűzet elrejtése"
 }

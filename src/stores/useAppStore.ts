@@ -1,8 +1,9 @@
 import { create } from 'zustand';
-import type { HistoryItem, Locale, Theme } from '../types';
+import type { HistoryItem, Locale, MessageSet, Theme } from '../types';
 import { AVAILABLE_LOCALES } from '../i18n/locales';
 
 const AVAILABLE_LOCALE_CODES = AVAILABLE_LOCALES.map((l) => l.code);
+export const DEFAULT_SET_ID = 'default';
 
 interface AppState {
   inputLine: string;
@@ -12,6 +13,14 @@ interface AppState {
   locale: Locale;
   theme: Theme;
   isSettingsOpen: boolean;
+
+  sets: MessageSet[];
+  currentSetId: string;
+  isSetsViewOpen: boolean;
+  isKeyboardVisible: boolean;
+  setNameInput: string;
+  editingSetId: string | null;
+  isAddingNewSet: boolean;
 
   setInputLine: (text: string) => void;
   appendToInputLine: (char: string) => void;
@@ -26,6 +35,23 @@ interface AppState {
   setLocale: (locale: Locale) => void;
   setTheme: (theme: Theme) => void;
   setSettingsOpen: (open: boolean) => void;
+
+  setSets: (sets: MessageSet[]) => void;
+  setCurrentSetId: (id: string) => void;
+  setSetsViewOpen: (open: boolean) => void;
+  setKeyboardVisible: (visible: boolean) => void;
+  selectSet: (id: string) => void;
+  addSet: (name: string) => void;
+  deleteSet: (id: string) => void;
+  renameSet: (id: string, name: string) => void;
+  setSetNameInput: (text: string) => void;
+  startEditingSetName: (id: string | null) => void;
+  cancelEditingSetName: () => void;
+  getCurrentSet: () => MessageSet | undefined;
+  startAddingNewSet: () => void;
+  appendToSetNameInput: (char: string) => void;
+  clearSetNameInput: () => void;
+  isInSetNameEditMode: () => boolean;
 }
 
 function generateId(): string {
@@ -59,6 +85,14 @@ function getInitialLocale(): Locale {
   return getSystemLocale();
 }
 
+function createDefaultSet(): MessageSet {
+  return {
+    id: DEFAULT_SET_ID,
+    name: 'Default Set',
+    history: [],
+  };
+}
+
 export const useAppStore = create<AppState>((set, get) => ({
   inputLine: '',
   history: [],
@@ -67,6 +101,14 @@ export const useAppStore = create<AppState>((set, get) => ({
   locale: getInitialLocale(),
   theme: getInitialTheme(),
   isSettingsOpen: false,
+
+  sets: [createDefaultSet()],
+  currentSetId: DEFAULT_SET_ID,
+  isSetsViewOpen: false,
+  isKeyboardVisible: true,
+  setNameInput: '',
+  editingSetId: null,
+  isAddingNewSet: false,
 
   setInputLine: (text) => {
     set({ inputLine: text, highlightedHistoryId: null });
@@ -97,14 +139,19 @@ export const useAppStore = create<AppState>((set, get) => ({
   },
 
   handleClearButton: () => {
-    const { inputLine, history, highlightedHistoryId } = get();
+    const { inputLine, history, highlightedHistoryId, sets, currentSetId } = get();
     if (inputLine.length > 0) {
       set({ inputLine: '', restoreIndex: 0 });
       return;
     }
     if (highlightedHistoryId) {
+      const newHistory = history.filter((h) => h.id !== highlightedHistoryId);
+      const updatedSets = sets.map((s) =>
+        s.id === currentSetId ? { ...s, history: newHistory } : s
+      );
       set({
-        history: history.filter((h) => h.id !== highlightedHistoryId),
+        history: newHistory,
+        sets: updatedSets,
         highlightedHistoryId: null,
         restoreIndex: 0,
       });
@@ -127,7 +174,7 @@ export const useAppStore = create<AppState>((set, get) => ({
   },
 
   acceptLine: () => {
-    const { inputLine, history } = get();
+    const { inputLine, history, sets, currentSetId } = get();
     if (!inputLine.trim()) return;
 
     const item: HistoryItem = {
@@ -136,20 +183,33 @@ export const useAppStore = create<AppState>((set, get) => ({
       createdAt: Date.now(),
     };
 
+    const newHistory = [item, ...history];
+    const updatedSets = sets.map((s) =>
+      s.id === currentSetId ? { ...s, history: newHistory } : s
+    );
+
     set({
       inputLine: '',
-      history: [item, ...history],
+      history: newHistory,
+      sets: updatedSets,
       restoreIndex: 0,
       highlightedHistoryId: null,
     });
   },
 
   deleteHistoryItem: (id) => {
-    set((state) => ({
-      history: state.history.filter((h) => h.id !== id),
-      highlightedHistoryId: state.highlightedHistoryId === id ? null : state.highlightedHistoryId,
-      restoreIndex: 0,
-    }));
+    set((state) => {
+      const newHistory = state.history.filter((h) => h.id !== id);
+      const updatedSets = state.sets.map((s) =>
+        s.id === state.currentSetId ? { ...s, history: newHistory } : s
+      );
+      return {
+        history: newHistory,
+        sets: updatedSets,
+        highlightedHistoryId: state.highlightedHistoryId === id ? null : state.highlightedHistoryId,
+        restoreIndex: 0,
+      };
+    });
   },
 
   highlightHistoryItem: (id) => {
@@ -158,7 +218,11 @@ export const useAppStore = create<AppState>((set, get) => ({
 
 
   setHistory: (history) => {
-    set({ history });
+    const { sets, currentSetId } = get();
+    const updatedSets = sets.map((s) =>
+      s.id === currentSetId ? { ...s, history } : s
+    );
+    set({ history, sets: updatedSets });
   },
 
   setLocale: (locale) => {
@@ -172,6 +236,159 @@ export const useAppStore = create<AppState>((set, get) => ({
   },
 
   setSettingsOpen: (open) => {
-    set({ isSettingsOpen: open });
+    set({ isSettingsOpen: open, isSetsViewOpen: false });
+  },
+
+  setSets: (sets) => {
+    const { currentSetId } = get();
+    const currentSet = sets.find((s) => s.id === currentSetId);
+    set({
+      sets,
+      history: currentSet?.history ?? [],
+    });
+  },
+
+  setCurrentSetId: (id) => {
+    const { sets } = get();
+    const targetSet = sets.find((s) => s.id === id);
+    if (targetSet) {
+      set({
+        currentSetId: id,
+        history: targetSet.history,
+        inputLine: '',
+        highlightedHistoryId: null,
+        restoreIndex: 0,
+      });
+    }
+  },
+
+  setSetsViewOpen: (open) => {
+    set({
+      isSetsViewOpen: open,
+      isSettingsOpen: false,
+      setNameInput: '',
+      editingSetId: null,
+      isAddingNewSet: false,
+    });
+  },
+
+  setKeyboardVisible: (visible) => {
+    set({ isKeyboardVisible: visible });
+  },
+
+  selectSet: (id) => {
+    const { sets } = get();
+    const targetSet = sets.find((s) => s.id === id);
+    if (targetSet) {
+      set({
+        currentSetId: id,
+        history: targetSet.history,
+        inputLine: '',
+        highlightedHistoryId: null,
+        restoreIndex: 0,
+        isSetsViewOpen: false,
+        setNameInput: '',
+        editingSetId: null,
+        isAddingNewSet: false,
+      });
+    }
+  },
+
+  addSet: (name) => {
+    const { sets } = get();
+    const newSet: MessageSet = {
+      id: generateId(),
+      name: name.trim() || 'New Set',
+      history: [],
+    };
+    set({
+      sets: [...sets, newSet],
+      setNameInput: '',
+      editingSetId: null,
+      isAddingNewSet: false,
+    });
+  },
+
+  deleteSet: (id) => {
+    const { sets, currentSetId } = get();
+    if (id === DEFAULT_SET_ID) return;
+    const filteredSets = sets.filter((s) => s.id !== id);
+    if (filteredSets.length === 0) return;
+
+    if (currentSetId === id) {
+      const newCurrentSet = filteredSets[0];
+      set({
+        sets: filteredSets,
+        currentSetId: newCurrentSet.id,
+        history: newCurrentSet.history,
+        inputLine: '',
+        highlightedHistoryId: null,
+        restoreIndex: 0,
+      });
+    } else {
+      set({ sets: filteredSets });
+    }
+  },
+
+  renameSet: (id, name) => {
+    const { sets } = get();
+    const updatedSets = sets.map((s) =>
+      s.id === id ? { ...s, name: name.trim() || s.name } : s
+    );
+    set({
+      sets: updatedSets,
+      setNameInput: '',
+      editingSetId: null,
+    });
+  },
+
+  setSetNameInput: (text) => {
+    set({ setNameInput: text });
+  },
+
+  startEditingSetName: (id) => {
+    const { sets } = get();
+    if (id === null) {
+      set({ editingSetId: null, setNameInput: '', isAddingNewSet: false });
+    } else {
+      const targetSet = sets.find((s) => s.id === id);
+      set({
+        editingSetId: id,
+        setNameInput: targetSet?.name ?? '',
+        isAddingNewSet: false,
+      });
+    }
+  },
+
+  cancelEditingSetName: () => {
+    set({ editingSetId: null, setNameInput: '', isAddingNewSet: false });
+  },
+
+  getCurrentSet: () => {
+    const { sets, currentSetId } = get();
+    return sets.find((s) => s.id === currentSetId);
+  },
+
+  startAddingNewSet: () => {
+    set({
+      isAddingNewSet: true,
+      editingSetId: null,
+      setNameInput: '',
+    });
+  },
+
+  appendToSetNameInput: (char) => {
+    set((state) => ({
+      setNameInput: state.setNameInput + char,
+    }));
+  },
+
+  clearSetNameInput: () => {
+    set({ setNameInput: '' });
+  },
+
+  isInSetNameEditMode: () => {
+    const { editingSetId, isAddingNewSet, isSetsViewOpen } = get();
+    return isSetsViewOpen && (editingSetId !== null || isAddingNewSet);
   },
 }));

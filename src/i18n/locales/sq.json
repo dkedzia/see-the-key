@@ -53,5 +53,12 @@
   "turkish": "Turqisht",
   "ukrainian": "Ukrainisht",
   "fullscreen": "Ekran i plotë",
-  "exitFullscreen": "Dilni nga ekrani i plotë"
+  "exitFullscreen": "Dilni nga ekrani i plotë",
+  "sets": "Grupe",
+  "closeSets": "Mbyll grupet",
+  "defaultSet": "Grupi i parazgjedhur",
+  "addSet": "Shto grup",
+  "rename": "Riemërto",
+  "showKeyboard": "Shfaq tastierën",
+  "hideKeyboard": "Fshih tastierën"
 }

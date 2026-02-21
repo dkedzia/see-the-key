@@ -4,6 +4,12 @@ export interface HistoryItem {
   createdAt: number;
 }
 
+export interface MessageSet {
+  id: string;
+  name: string;
+  history: HistoryItem[];
+}
+
 export type Locale =
   | 'sq'   // Albanian
   | 'be'   // Belarusian

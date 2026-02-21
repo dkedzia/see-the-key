@@ -3,7 +3,6 @@
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem 1rem;
-  margin: 0.25rem 0;
   background: var(--color-surface);
   border-radius: 8px;
   border: 2px solid transparent;
@@ -18,9 +17,11 @@
 .text {
   flex: 1;
   font-size: 1.25rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  max-width: 400px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  line-height: 1.4;
 }
 
 .actions {

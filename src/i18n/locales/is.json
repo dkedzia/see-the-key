@@ -53,5 +53,12 @@
   "turkish": "Tyrkneska",
   "ukrainian": "Úkraínska",
   "fullscreen": "Allur skjárinn",
-  "exitFullscreen": "Hætta í öllum skjánum"
+  "exitFullscreen": "Hætta í öllum skjánum",
+  "sets": "Sett",
+  "closeSets": "Loka settum",
+  "defaultSet": "Sjálfgefið sett",
+  "addSet": "Bæta við setti",
+  "rename": "Endurnefna",
+  "showKeyboard": "Sýna lyklaborð",
+  "hideKeyboard": "Fela lyklaborð"
 }
