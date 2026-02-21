@@ -1,77 +1,38 @@
-import { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAppStore } from '../../stores/useAppStore';
-import { AVAILABLE_LOCALES } from '../../i18n/locales';
-import { ThemeSwitcher } from '../ThemeSwitcher';
-import type { Locale } from '../../types';
 import styles from './Header.module.css';
 
 export function Header() {
-  const { t, i18n } = useTranslation();
-  const { locale, setLocale } = useAppStore();
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const popupRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (popupRef.current && !popupRef.current.contains(event.target as Node)) {
-        setIsPopupOpen(false);
-      }
-    }
-    if (isPopupOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-    }
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [isPopupOpen]);
-
-  const handleLocaleChange = (newLocale: Locale) => {
-    setLocale(newLocale);
-    i18n.changeLanguage(newLocale);
-    setIsPopupOpen(false);
-  };
-
-  const currentLocaleLabel =
-    AVAILABLE_LOCALES.find((l) => l.code === locale)?.labelKey ?? 'polish';
+  const { t } = useTranslation();
+  const isSettingsOpen = useAppStore((s) => s.isSettingsOpen);
+  const setSettingsOpen = useAppStore((s) => s.setSettingsOpen);
 
   return (
     <header className={styles.header}>
       <h1 className={styles.title}>{t('appTitle')}</h1>
       <div className={styles.controls}>
-        <ThemeSwitcher />
-        <div className={styles.langSwitcher} ref={popupRef}>
-          <button
-            type="button"
-            className={styles.langTrigger}
-            onClick={() => setIsPopupOpen(!isPopupOpen)}
-            aria-expanded={isPopupOpen}
-            aria-haspopup="listbox"
-            aria-label={t('language')}
-          >
-            {t(currentLocaleLabel)}
-          </button>
-          {isPopupOpen && (
-            <div
-              className={styles.langPopup}
-              role="listbox"
-              aria-label={t('language')}
-            >
-              {AVAILABLE_LOCALES.map(({ code, labelKey }) => (
-                <button
-                  key={code}
-                  type="button"
-                  role="option"
-                  aria-selected={locale === code}
-                  className={`${styles.langOption} ${
-                    locale === code ? styles.active : ''
-                  }`}
-                  onClick={() => handleLocaleChange(code)}
-                >
-                  {t(labelKey)}
-                </button>
-              ))}
-            </div>
+        <button
+          type="button"
+          className={styles.settingsButton}
+          onClick={() => setSettingsOpen(!isSettingsOpen)}
+          aria-label={isSettingsOpen ? t('closeSettings') : t('settings')}
+          aria-expanded={isSettingsOpen}
+        >
+          {isSettingsOpen ? (
+            <>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+              <span>{t('closeSettings')}</span>
+            </>
+          ) : (
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="3" />
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+            </svg>
           )}
-        </div>
+        </button>
       </div>
     </header>
   );
