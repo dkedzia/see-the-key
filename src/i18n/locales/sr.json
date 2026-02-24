@@ -60,5 +60,7 @@
   "addSet": "Додај скуп",
   "rename": "Преименуј",
   "showKeyboard": "Прикажи тастатуру",
-  "hideKeyboard": "Сакриј тастатуру"
+  "hideKeyboard": "Сакриј тастатуру",
+  "updateCurrent": "Апликација је ажурирана",
+  "updateAvailable": "Доступно ажурирање"
 }

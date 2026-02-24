@@ -60,5 +60,7 @@
   "addSet": "Żid sett",
   "rename": "Semmi mill-ġdid",
   "showKeyboard": "Uri t-tastiera",
-  "hideKeyboard": "Aħbi t-tastiera"
+  "hideKeyboard": "Aħbi t-tastiera",
+  "updateCurrent": "L-applikazzjoni hija aġġornata",
+  "updateAvailable": "Aġġornament disponibbli"
 }

@@ -60,5 +60,7 @@
   "addSet": "Додати набір",
   "rename": "Перейменувати",
   "showKeyboard": "Показати клавіатуру",
-  "hideKeyboard": "Сховати клавіатуру"
+  "hideKeyboard": "Сховати клавіатуру",
+  "updateCurrent": "Застосунок оновлено",
+  "updateAvailable": "Доступне оновлення"
 }

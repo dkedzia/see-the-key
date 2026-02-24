@@ -60,5 +60,7 @@
   "addSet": "Přidat sadu",
   "rename": "Přejmenovat",
   "showKeyboard": "Zobrazit klávesnici",
-  "hideKeyboard": "Skrýt klávesnici"
+  "hideKeyboard": "Skrýt klávesnici",
+  "updateCurrent": "Aplikace je aktuální",
+  "updateAvailable": "Dostupná aktualizace"
 }

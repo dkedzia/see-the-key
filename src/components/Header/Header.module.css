@@ -3,6 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1rem;
   padding: 0.75rem 1.5rem;
   background: var(--color-surface);
   border-bottom: 2px solid var(--color-border);
@@ -12,6 +13,12 @@
   margin: 0;
   font-size: 1.5rem;
   font-weight: 600;
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .controls {
@@ -64,6 +71,35 @@
 }
 
 .iconButton:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.updateStatus {
+  font-size: 0.85rem;
+}
+
+.updateStatusCurrent {
+  color: #22c55e;
+}
+
+.updateStatusAvailable {
+  color: #ef4444;
+}
+
+button.updateStatus {
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+button.updateStatus:hover {
+  text-decoration: underline;
+}
+
+button.updateStatus:focus-visible {
   outline: 3px solid var(--color-accent);
   outline-offset: 2px;
 }

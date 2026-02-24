@@ -60,5 +60,7 @@
   "addSet": "Lisää sarja",
   "rename": "Nimeä uudelleen",
   "showKeyboard": "Näytä näppäimistö",
-  "hideKeyboard": "Piilota näppäimistö"
+  "hideKeyboard": "Piilota näppäimistö",
+  "updateCurrent": "Sovellus on ajan tasalla",
+  "updateAvailable": "Päivitys saatavilla"
 }

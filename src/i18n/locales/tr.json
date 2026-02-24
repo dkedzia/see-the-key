@@ -60,5 +60,7 @@
   "addSet": "Set ekle",
   "rename": "Yeniden adlandır",
   "showKeyboard": "Klavyeyi göster",
-  "hideKeyboard": "Klavyeyi gizle"
+  "hideKeyboard": "Klavyeyi gizle",
+  "updateCurrent": "Uygulama güncel",
+  "updateAvailable": "Güncelleme mevcut"
 }

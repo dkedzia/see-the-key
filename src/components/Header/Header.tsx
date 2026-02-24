@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getCurrentWindow } from '@tauri-apps/api/window';
 import { useAppStore } from '../../stores/useAppStore';
+import { UpdateStatus } from './UpdateStatus';
 import styles from './Header.module.css';
 
 export function Header() {
@@ -36,7 +37,9 @@ export function Header() {
   return (
     <header className={styles.header}>
       <h1 className={styles.title}>{t('appTitle')}</h1>
-      <div className={styles.controls}>
+      <div className={styles.headerRight}>
+        <UpdateStatus />
+        <div className={styles.controls}>
         <button
           type="button"
           className={styles.iconButton}
@@ -113,6 +116,7 @@ export function Header() {
             </svg>
           )}
         </button>
+        </div>
       </div>
     </header>
   );

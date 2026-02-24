@@ -60,5 +60,7 @@
   "addSet": "Tilføj sæt",
   "rename": "Omdøb",
   "showKeyboard": "Vis tastatur",
-  "hideKeyboard": "Skjul tastatur"
+  "hideKeyboard": "Skjul tastatur",
+  "updateCurrent": "Appen er opdateret",
+  "updateAvailable": "Opdatering tilgængelig"
 }

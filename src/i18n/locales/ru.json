@@ -60,5 +60,7 @@
   "addSet": "Добавить набор",
   "rename": "Переименовать",
   "showKeyboard": "Показать клавиатуру",
-  "hideKeyboard": "Скрыть клавиатуру"
+  "hideKeyboard": "Скрыть клавиатуру",
+  "updateCurrent": "Приложение обновлено",
+  "updateAvailable": "Доступно обновление"
 }

@@ -60,5 +60,7 @@
   "addSet": "Add set",
   "rename": "Rename",
   "showKeyboard": "Show keyboard",
-  "hideKeyboard": "Hide keyboard"
+  "hideKeyboard": "Hide keyboard",
+  "updateCurrent": "App up to date",
+  "updateAvailable": "Update available"
 }

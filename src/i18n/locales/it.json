@@ -60,5 +60,7 @@
   "addSet": "Aggiungi set",
   "rename": "Rinomina",
   "showKeyboard": "Mostra tastiera",
-  "hideKeyboard": "Nascondi tastiera"
+  "hideKeyboard": "Nascondi tastiera",
+  "updateCurrent": "App aggiornata",
+  "updateAvailable": "Aggiornamento disponibile"
 }

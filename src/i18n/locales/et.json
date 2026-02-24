@@ -60,5 +60,7 @@
   "addSet": "Lisa komplekt",
   "rename": "Nimeta ümber",
   "showKeyboard": "Kuva klaviatuur",
-  "hideKeyboard": "Peida klaviatuur"
+  "hideKeyboard": "Peida klaviatuur",
+  "updateCurrent": "Rakendus on värskendatud",
+  "updateAvailable": "Uuendus saadaval"
 }

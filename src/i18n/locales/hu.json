@@ -60,5 +60,7 @@
   "addSet": "Készlet hozzáadása",
   "rename": "Átnevezés",
   "showKeyboard": "Billentyűzet megjelenítése",
-  "hideKeyboard": "Billentyűzet elrejtése"
+  "hideKeyboard": "Billentyűzet elrejtése",
+  "updateCurrent": "Az alkalmazás naprakész",
+  "updateAvailable": "Frissítés elérhető"
 }

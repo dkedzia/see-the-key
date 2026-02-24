@@ -60,5 +60,7 @@
   "addSet": "Pievienot komplektu",
   "rename": "Pārdēvēt",
   "showKeyboard": "Rādīt tastatūru",
-  "hideKeyboard": "Paslēpt tastatūru"
+  "hideKeyboard": "Paslēpt tastatūru",
+  "updateCurrent": "Lietotne ir atjaunināta",
+  "updateAvailable": "Atjauninājums pieejams"
 }

@@ -60,5 +60,7 @@
   "addSet": "Legg til sett",
   "rename": "Gi nytt navn",
   "showKeyboard": "Vis tastatur",
-  "hideKeyboard": "Skjul tastatur"
+  "hideKeyboard": "Skjul tastatur",
+  "updateCurrent": "Appen er oppdatert",
+  "updateAvailable": "Oppdatering tilgjengelig"
 }
