@@ -60,5 +60,7 @@
   "addSet": "Dodaj niz",
   "rename": "Preimenuj",
   "showKeyboard": "Prikaži tipkovnico",
-  "hideKeyboard": "Skrij tipkovnico"
+  "hideKeyboard": "Skrij tipkovnico",
+  "updateCurrent": "Aplikacija je posodobljena",
+  "updateAvailable": "Posodobitev na voljo"
 }

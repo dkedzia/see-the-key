@@ -60,5 +60,7 @@
   "addSet": "Lägg till uppsättning",
   "rename": "Byt namn",
   "showKeyboard": "Visa tangentbord",
-  "hideKeyboard": "Dölj tangentbord"
+  "hideKeyboard": "Dölj tangentbord",
+  "updateCurrent": "Appen är uppdaterad",
+  "updateAvailable": "Uppdatering tillgänglig"
 }

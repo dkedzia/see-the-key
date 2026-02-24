@@ -60,5 +60,7 @@
   "addSet": "Dodaj zestaw",
   "rename": "Zmień nazwę",
   "showKeyboard": "Pokaż klawiaturę",
-  "hideKeyboard": "Ukryj klawiaturę"
+  "hideKeyboard": "Ukryj klawiaturę",
+  "updateCurrent": "Aplikacja aktualna",
+  "updateAvailable": "Dostępna aktualizacja"
 }

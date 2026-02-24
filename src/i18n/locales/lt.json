@@ -60,5 +60,7 @@
   "addSet": "Pridėti rinkinį",
   "rename": "Pervadinti",
   "showKeyboard": "Rodyti klaviatūrą",
-  "hideKeyboard": "Slėpti klaviatūrą"
+  "hideKeyboard": "Slėpti klaviatūrą",
+  "updateCurrent": "Programa atnaujinta",
+  "updateAvailable": "Atnaujinimas prieinamas"
 }

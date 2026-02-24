@@ -60,5 +60,7 @@
   "addSet": "Set hinzufügen",
   "rename": "Umbenennen",
   "showKeyboard": "Tastatur anzeigen",
-  "hideKeyboard": "Tastatur ausblenden"
+  "hideKeyboard": "Tastatur ausblenden",
+  "updateCurrent": "App ist aktuell",
+  "updateAvailable": "Update verfügbar"
 }

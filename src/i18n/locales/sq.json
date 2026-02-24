@@ -60,5 +60,7 @@
   "addSet": "Shto grup",
   "rename": "Riemërto",
   "showKeyboard": "Shfaq tastierën",
-  "hideKeyboard": "Fshih tastierën"
+  "hideKeyboard": "Fshih tastierën",
+  "updateCurrent": "Aplikacioni është aktual",
+  "updateAvailable": "Përditësim i disponueshëm"
 }

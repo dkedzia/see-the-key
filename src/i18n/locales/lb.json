@@ -60,5 +60,7 @@
   "addSet": "Saz bäisetzen",
   "rename": "Ëmbenennen",
   "showKeyboard": "Tastatur weisen",
-  "hideKeyboard": "Tastatur verstoppen"
+  "hideKeyboard": "Tastatur verstoppen",
+  "updateCurrent": "App ass aktuell",
+  "updateAvailable": "Update disponibel"
 }

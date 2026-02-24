@@ -60,5 +60,7 @@
   "addSet": "Set toevoegen",
   "rename": "Hernoemen",
   "showKeyboard": "Toetsenbord tonen",
-  "hideKeyboard": "Toetsenbord verbergen"
+  "hideKeyboard": "Toetsenbord verbergen",
+  "updateCurrent": "App is bijgewerkt",
+  "updateAvailable": "Update beschikbaar"
 }

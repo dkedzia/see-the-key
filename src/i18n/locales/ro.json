@@ -60,5 +60,7 @@
   "addSet": "Adaugă set",
   "rename": "Redenumește",
   "showKeyboard": "Arată tastatura",
-  "hideKeyboard": "Ascunde tastatura"
+  "hideKeyboard": "Ascunde tastatura",
+  "updateCurrent": "Aplicația este actualizată",
+  "updateAvailable": "Actualizare disponibilă"
 }

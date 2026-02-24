@@ -60,5 +60,7 @@
   "addSet": "Bæta við setti",
   "rename": "Endurnefna",
   "showKeyboard": "Sýna lyklaborð",
-  "hideKeyboard": "Fela lyklaborð"
+  "hideKeyboard": "Fela lyklaborð",
+  "updateCurrent": "Forritið er uppfært",
+  "updateAvailable": "Uppfærsla tiltæk"
 }

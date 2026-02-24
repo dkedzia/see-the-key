@@ -60,5 +60,7 @@
   "addSet": "Ajouter un ensemble",
   "rename": "Renommer",
   "showKeyboard": "Afficher le clavier",
-  "hideKeyboard": "Masquer le clavier"
+  "hideKeyboard": "Masquer le clavier",
+  "updateCurrent": "Application à jour",
+  "updateAvailable": "Mise à jour disponible"
 }

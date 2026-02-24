@@ -60,5 +60,7 @@
   "addSet": "Pridať sadu",
   "rename": "Premenovať",
   "showKeyboard": "Zobraziť klávesnicu",
-  "hideKeyboard": "Skryť klávesnicu"
+  "hideKeyboard": "Skryť klávesnicu",
+  "updateCurrent": "Aplikácia je aktuálna",
+  "updateAvailable": "Dostupná aktualizácia"
 }
