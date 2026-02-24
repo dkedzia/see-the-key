@@ -26,6 +26,8 @@ interface AppState {
   appendToInputLine: (char: string) => void;
   replaceCurrentWord: (suggestion: string, appendSpace?: boolean) => void;
   clearInputLine: () => void;
+  removeLastFromInputLine: () => void;
+  removeLastFromSetNameInput: () => void;
   handleClearButton: () => void;
   handleRestoreButton: () => void;
   acceptLine: () => void;
@@ -136,6 +138,23 @@ export const useAppStore = create<AppState>((set, get) => ({
 
   clearInputLine: () => {
     set({ inputLine: '', highlightedHistoryId: null, restoreIndex: 0 });
+  },
+
+  removeLastFromInputLine: () => {
+    set((state) => {
+      if (state.inputLine.length === 0) return state;
+      return {
+        inputLine: state.inputLine.slice(0, -1),
+        highlightedHistoryId: null,
+      };
+    });
+  },
+
+  removeLastFromSetNameInput: () => {
+    set((state) => {
+      if (state.setNameInput.length === 0) return state;
+      return { setNameInput: state.setNameInput.slice(0, -1) };
+    });
   },
 
   handleClearButton: () => {

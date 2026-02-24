@@ -70,14 +70,18 @@
   background: #16a34a;
 }
 
-.clearKey {
+.backspaceKey {
   flex: 0 0 auto;
   min-width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
   background: #ef4444;
   color: #fff;
 }
 
-.clearKey:hover {
+.backspaceKey:hover {
   background: #dc2626;
 }
 
