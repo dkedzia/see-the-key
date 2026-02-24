@@ -104,7 +104,13 @@ export function SetsView() {
               {isAddingNewSet ? t('addSet') : t('rename')}
             </span>
             <div className={styles.editInput} aria-label={t('setNamePlaceholder')}>
-              {setNameInput || '\u00A0'}
+              <div className={styles.editInputWithCaret}>
+                <span>{setNameInput || '\u00A0'}</span>
+                <span
+                  className={`caret ${setNameInput.endsWith(' ') ? styles.caretAfterSpace : styles.caretAfterChar}`}
+                  aria-hidden="true"
+                />
+              </div>
             </div>
             <div className={styles.editActions}>
               <button
