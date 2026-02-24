@@ -106,6 +106,15 @@
   white-space: nowrap;
 }
 
+/* Cursor spacing: wider after space, tight after letter/backspace */
+.caretAfterSpace {
+  margin-left: 0;
+}
+
+.caretAfterChar {
+  margin-left: -0.4rem;
+}
+
 .clearBtn {
   flex-shrink: 0;
   min-height: 44px;

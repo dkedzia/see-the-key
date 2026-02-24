@@ -86,3 +86,26 @@ button:focus-visible {
   height: 100vh;
   overflow: hidden;
 }
+
+/* Text input caret (blinking cursor) */
+@keyframes caretBlink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.caret {
+  display: inline-block;
+  width: 2px;
+  min-width: 2px;
+  height: 1em;
+  background: currentColor;
+  vertical-align: text-bottom;
+  animation: caretBlink 1s step-end infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .caret {
+    animation: none;
+  }
+}

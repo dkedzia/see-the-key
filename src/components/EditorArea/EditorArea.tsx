@@ -64,7 +64,7 @@ export function EditorArea() {
     const width = container.clientWidth;
     const newRowsPerColumn = Math.max(1, Math.floor(height / ITEM_HEIGHT_ESTIMATE));
     const newColumnsCount = Math.max(1, Math.floor(width / COLUMN_WIDTH_ESTIMATE));
-    
+
     setRowsPerColumn(newRowsPerColumn);
     setColumnsCount(newColumnsCount);
   }, []);
@@ -146,6 +146,10 @@ export function EditorArea() {
         <div className={styles.inputLine} aria-label="Current input">
           <div className={styles.inputContent}>
             <span className={styles.inputText}>{inputLine || '\u00A0'}</span>
+            <span
+              className={`caret ${inputLine.endsWith(' ') ? styles.caretAfterSpace : styles.caretAfterChar}`}
+              aria-hidden="true"
+            />
             <InlineSuggestions />
           </div>
           <button

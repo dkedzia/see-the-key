@@ -206,6 +206,20 @@
   color: var(--color-text);
 }
 
+.editInputWithCaret {
+  display: inline-flex;
+  align-items: baseline;
+  white-space: nowrap;
+}
+
+.caretAfterSpace {
+  margin-left: 0;
+}
+
+.caretAfterChar {
+  margin-left: -0.4rem;
+}
+
 .editActions {
   display: flex;
   gap: 0.75rem;
