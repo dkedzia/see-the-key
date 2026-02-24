@@ -11,10 +11,10 @@ export function Keyboard() {
   const { t, i18n } = useTranslation();
   const inputLine = useAppStore((s) => s.inputLine);
   const acceptLine = useAppStore((s) => s.acceptLine);
-  const handleClearButton = useAppStore((s) => s.handleClearButton);
   const handleRestoreButton = useAppStore((s) => s.handleRestoreButton);
   const isInSetNameEditMode = useAppStore((s) => s.isInSetNameEditMode);
-  const clearSetNameInput = useAppStore((s) => s.clearSetNameInput);
+  const removeLastFromInputLine = useAppStore((s) => s.removeLastFromInputLine);
+  const removeLastFromSetNameInput = useAppStore((s) => s.removeLastFromSetNameInput);
   const appendToSetNameInput = useAppStore((s) => s.appendToSetNameInput);
   const appendToInputLine = useAppStore((s) => s.appendToInputLine);
 
@@ -27,11 +27,11 @@ export function Keyboard() {
 
   const inSetEditMode = isInSetNameEditMode();
 
-  const handleClear = () => {
+  const handleBackspace = () => {
     if (inSetEditMode) {
-      clearSetNameInput();
+      removeLastFromSetNameInput();
     } else {
-      handleClearButton();
+      removeLastFromInputLine();
     }
   };
 
@@ -69,7 +69,7 @@ export function Keyboard() {
   return (
     <div className={styles.keyboard}>
       <div className={styles.rows}>
-        {/* Row 1: Numbers + Clear (Backspace position) */}
+        {/* Row 1: Numbers + Backspace */}
         <div className={styles.row}>
           {NUMBER_ROW.map((char) => (
             <RowKeyComponent
@@ -79,10 +79,14 @@ export function Keyboard() {
           ))}
           <button
             type="button"
-            className={`${styles.key} ${styles.clearKey}`}
-            onClick={handleClear}
+            className={`${styles.key} ${styles.backspaceKey}`}
+            onClick={handleBackspace}
+            aria-label="Backspace"
           >
-            {t('clear')}
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M19 12H5M12 19l-7-7 7-7" />
+            </svg>
+            Backspace
           </button>
         </div>
         {/* Row 2: Restore (Tab) + first letter row */}

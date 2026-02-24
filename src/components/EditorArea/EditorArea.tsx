@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useAppStore } from '../../stores/useAppStore';
 import { useSuggestions } from '../../services/suggestions/useSuggestions';
 import { HistoryItem } from '../HistoryItem/HistoryItem';
@@ -32,7 +33,8 @@ function InlineSuggestions() {
 }
 
 export function EditorArea() {
-  const { inputLine, history, highlightedHistoryId } = useAppStore();
+  const { t } = useTranslation();
+  const { inputLine, history, highlightedHistoryId, handleClearButton } = useAppStore();
   const [rowsPerColumn, setRowsPerColumn] = useState(1);
   const [columnsCount, setColumnsCount] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
@@ -142,8 +144,18 @@ export function EditorArea() {
       </div>
       <div className={styles.inputSection}>
         <div className={styles.inputLine} aria-label="Current input">
-          <span className={styles.inputText}>{inputLine || '\u00A0'}</span>
-          <InlineSuggestions />
+          <div className={styles.inputContent}>
+            <span className={styles.inputText}>{inputLine || '\u00A0'}</span>
+            <InlineSuggestions />
+          </div>
+          <button
+            type="button"
+            className={styles.clearBtn}
+            onClick={handleClearButton}
+            aria-label={t('clear')}
+          >
+            {t('clear')}
+          </button>
         </div>
       </div>
     </div>
